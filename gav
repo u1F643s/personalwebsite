@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GAV — Generate ASCII Video</title>
+  <meta name="description" content="GAV (Generate ASCII Video) — convert any video to an ASCII-styled terminal video. CLI-first, developer-friendly."/>
+  <style>
+    :root{
+      --bg1:#0b0f14; /* deep navy */
+      --bg2:#071018; /* darker */
+      --accent:#39ff14; /* neon green */
+      --muted:#9aa7b2;
+      --panel:#07121a;
+      --glass: rgba(255,255,255,0.03);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background: linear-gradient(180deg,var(--bg1),var(--bg2)); color:#e6eef3;}
+    .container{max-width:1100px;margin:40px auto;padding:28px;}
+
+    header{display:flex;gap:18px;align-items:center;margin-bottom:22px}
+    .logo{font-family:var(--mono);font-weight:700;color:var(--accent);letter-spacing:1px;background:linear-gradient(90deg,var(--accent),#8affc1);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:20px}
+    .title{font-size:20px;margin:0}
+    .sub{color:var(--muted);font-size:13px}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start}
+    .card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;box-shadow: 0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+    .h1{font-size:28px;margin:4px 0}
+    .lead{color:var(--muted);line-height:1.45}
+
+    /* terminal panel */
+    .term{background:linear-gradient(180deg,#051017 0%, rgba(3,6,11,0.5) 100%);padding:16px;border-radius:10px;font-family:var(--mono);font-size:13px; color:var(--accent);overflow:hidden;position:relative}
+    .term .bar{height:12px;display:flex;gap:8px;align-items:center;margin-bottom:10px}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.r{background:#ff5f56}
+    .dot.y{background:#ffbd2e}
+    .dot.g{background:#27c93f}
+    pre{margin:0;white-space:pre-wrap}
+
+    .controls{display:flex;gap:8px;margin-top:12px}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:8px;cursor:pointer;color:var(--muted);font-weight:600}
+    .btn.primary{background:linear-gradient(90deg, rgba(57,255,20,0.06), rgba(138,255,193,0.03));color:var(--accent)}
+
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:13px}
+    th{color:var(--muted);font-weight:600}
+
+    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+    .feature{padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border-radius:8px}
+    .feature h4{margin:0 0 6px 0}
+    .muted{color:var(--muted)}
+
+    footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* fade in */
+    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .7s forwards}
+    .delay-1{animation-delay:.12s}.delay-2{animation-delay:.18s}.delay-3{animation-delay:.26s}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* typing effect for the example command */
+    .cli{background:transparent;padding:10px;border-radius:6px;color:#b8ffb3}
+    .copy{display:inline-block;margin-left:8px;padding:4px 8px;border-radius:6px;background:rgba(255,255,255,0.02);cursor:pointer;font-size:12px}
+
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.container{padding:16px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="fade-up delay-1">
+      <div class="logo">GAV</div>
+      <div>
+        <h3 class="title">GAV — Generate ASCII Video</h3>
+        <div class="sub">CLI-first tool to convert videos into retro ASCII terminal movies. Dark-mode aesthetic.</div>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="card fade-up delay-2">
+        <h1 class="h1">Official landing for <span style="color:var(--accent)">GAV</span></h1>
+        <p class="lead">Turn any video into an ASCII-styled MP4 or JSON frames — perfect for art projects, demos, and retro vibes. Works as a Python CLI built with OpenCV and Pillow.</p>
+
+        <div class="features">
+          <div class="feature">
+            <h4>Terminal-first</h4>
+            <div class="muted">Use the CLI to tune width, characters, FPS, and output format.</div>
+          </div>
+          <div class="feature">
+            <h4>Threaded conversion</h4>
+            <div class="muted">Multi-threaded frame conversion for faster processing on modern CPUs.</div>
+          </div>
+          <div class="feature">
+            <h4>JSON export</h4>
+            <div class="muted">Export frames as plain ASCII JSON for creative uses.</div>
+          </div>
+          <div class="feature">
+            <h4>Dark & retro UI</h4>
+            <div class="muted">Website matches the terminal aesthetic: neon green, monospace, subtle fade.</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:16px">Quick install & usage</h3>
+        <div style="background:#041217;padding:12px;border-radius:8px;margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--muted)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <code class="cli">pip install -r requirements.txt  # opencv-python pillow</code>
+            <span class="copy" onclick="copyText('pip install -r requirements.txt')">Copy</span>
+          </div>
+          <div style="height:8px"></div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <code class="cli">python gav.py -videopath input.mp4 -output out -width 120 -fps 20</code>
+            <span class="copy" onclick="copyText('python gav.py -videopath input.mp4 -output out -width 120 -fps 20')">Copy</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top:14px">CLI options</h3>
+        <table>
+          <thead><tr><th>Option</th><th>Default</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>-videopath</td><td>video.mp4</td><td>Path to input video</td></tr>
+            <tr><td>-output</td><td>ascii_frames</td><td>Folder to save frames</td></tr>
+            <tr><td>-ascii_video</td><td>ascii_video.mp4</td><td>Output ASCII video</td></tr>
+            <tr><td>-fps</td><td>20</td><td>Target FPS</td></tr>
+            <tr><td>-width</td><td>120</td><td>ASCII characters per line</td></tr>
+            <tr><td>-chars</td><td>@%#*+=-:. </td><td>Characters from dark -> light</td></tr>
+            <tr><td>-json</td><td>false</td><td>Save frames as JSON instead of a video</td></tr>
+          </tbody>
+        </table>
+
+        <div class="controls" style="margin-top:12px">
+          <button class="btn primary" onclick="openLink('#')">View on GitHub</button>
+          <button class="btn" onclick="openLink('#')">Download ZIP</button>
+          <button class="btn" onclick="openLink('#')">Documentation</button>
+        </div>
+      </section>
+
+      <aside class="card fade-up delay-3">
+        <div class="term">
+          <div class="bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <pre id="termOut">$ python gav.py -videopath demo.mp4 -width 140 -fps 24
+[Frame Extraction] Saved frame 0000
+[Frame Extraction] Saved frame 0001
+[ASCII Conversion] Converted frame_0000.png
+[ASCII Conversion] Converted frame_0001.png
+[Video Writing] Wrote frame 0000
+[Video Writing] Wrote frame 0001
+ASCII video saved as ascii_demo.mp4</pre>
+
+          <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+            <button class="btn" onclick="replayTerm()">Replay</button>
+            <button class="btn" onclick="toggleFaint()">Fading UI</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;text-align:center;color:var(--muted);font-size:13px">Preview (static) — terminal vibes, dark mode ✨</div>
+      </aside>
+    </main>
+
+    <footer class="fade-up delay-1">
+      <div>Made with my functional brain🧠</div>
+    </footer>
+  </div>
+
+  <script>
+    function copyText(s){navigator.clipboard?.writeText(s).then(()=>{alert('Copied to clipboard ✅')})}
+    function openLink(h){alert('This is a placeholder. Replace \"#\" with your GitHub or download links.')}
+
+    // Terminal replay animation
+    const rawLines = [
+      '$ python gav.py -videopath demo.mp4 -width 140 -fps 24',
+      '[Frame Extraction] Saved frame 0000',
+      '[Frame Extraction] Saved frame 0001',
+      '[ASCII Conversion] Converted frame_0000.png',
+      '[ASCII Conversion] Converted frame_0001.png',
+      '[Video Writing] Wrote frame 0000',
+      '[Video Writing] Wrote frame 0001',
+      'ASCII video saved as ascii_demo.mp4'
+    ];
+
+    function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+    async function replayTerm(){const out=document.getElementById('termOut');out.textContent='';for(const ln of rawLines){out.textContent += ln + '\n';await sleep(380)} }
+
+    // Fainting / fading effect (toggle subtle opacity)
+    let faint=false;
+    function toggleFaint(){faint=!faint;document.body.style.opacity = faint?0.92:1}
+  </script>
+</body>
+</html>
