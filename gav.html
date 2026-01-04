@@ -126,16 +126,14 @@
         </table>
 
         <div class="controls" style="margin-top:12px">
-          <button class="btn primary" onclick="openLink('#')">View on GitHub</button>
-          <button class="btn" onclick="openLink('#')">Download ZIP</button>
-          <button class="btn" onclick="openLink('#')">Documentation</button>
+          <button class="btn primary" onclick="openLink('https://github.com/u1F643s/gav')">View on GitHub</button>
         </div>
       </section>
 
       <aside class="card fade-up delay-3">
         <div class="term">
           <div class="bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
-          <pre id="termOut">$ python gav.py -videopath demo.mp4 -width 140 -fps 24
+          <pre id="termOut">gav -videopath demo.mp4 -width 140 -fps 24
 [Frame Extraction] Saved frame 0000
 [Frame Extraction] Saved frame 0001
 [ASCII Conversion] Converted frame_0000.png
@@ -145,12 +143,11 @@
 ASCII video saved as ascii_demo.mp4</pre>
 
           <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
-            <button class="btn" onclick="replayTerm()">Replay</button>
-            <button class="btn" onclick="toggleFaint()">Fading UI</button>
+            <button class="btn" onclick="replayTerm()">Made With Python (a bit slow)</button>
           </div>
         </div>
 
-        <div style="margin-top:12px;text-align:center;color:var(--muted);font-size:13px">Preview (static) — terminal vibes, dark mode ✨</div>
+        <div style="margin-top:12px;text-align:center;color:var(--muted);font-size:13px">u1F643</div>
       </aside>
     </main>
 
@@ -160,7 +157,7 @@ ASCII video saved as ascii_demo.mp4</pre>
   </div>
 
   <script>
-    function copyText(s){navigator.clipboard?.writeText(s).then(()=>{alert('Copied to clipboard ✅')})}
+    function copyText(s){navigator.clipboard?.writeText(s).then(()=>{alert('Copied to clipboard')})}
     function openLink(h){alert('This is a placeholder. Replace \"#\" with your GitHub or download links.')}
 
     // Terminal replay animation
