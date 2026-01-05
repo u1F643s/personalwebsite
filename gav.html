@@ -78,12 +78,12 @@
     <main class="hero">
       <section class="card fade-up delay-2">
         <h1 class="h1">Official landing for <span style="color:var(--accent)">GAV</span></h1>
-        <p class="lead">Turn any video into an ASCII-styled MP4 or JSON frames — perfect for art projects, demos, and retro vibes. Works as a Python CLI built with OpenCV and Pillow.</p>
+        <p class="lead">Turn any video into an ASCII-styled MP4 or JSON frames</p>
 
         <div class="features">
           <div class="feature">
             <h4>Terminal-first</h4>
-            <div class="muted">Use the CLI to tune width, characters, FPS, and output format.</div>
+            <div class="muted">Use the CLI to tune width, characters, FPS, and output format. (working on GUI)</div>
           </div>
           <div class="feature">
             <h4>Threaded conversion</h4>
@@ -91,18 +91,18 @@
           </div>
           <div class="feature">
             <h4>JSON export</h4>
-            <div class="muted">Export frames as plain ASCII JSON for creative uses.</div>
+            <div class="muted">Export frames as plain ASCII JSON for creative uses. (got some bugs, do -thread 1 to prevent JSON bugs from happening)</div>
           </div>
           <div class="feature">
-            <h4>Dark & retro UI</h4>
-            <div class="muted">Website matches the terminal aesthetic: neon green, monospace, subtle fade.</div>
+            <h4>Speed</h4>
+            <div class="muted">Depends on your CPU.</div>
           </div>
         </div>
 
         <h3 style="margin-top:16px">Quick install & usage</h3>
         <div style="background:#041217;padding:12px;border-radius:8px;margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--muted)">
           <div style="display:flex;align-items:center;gap:10px">
-            <a href="https://github.com/u1F643s/gav/releases/download/gav/GAV_Setup.exe" download class="cli">Download Installer</a>
+            <a href="https://github.com/u1F643s/gav/releases/download/1.1/GAV_Setup.exe" download class="cli">Download Installer</a>
           </div>
           <div style="height:8px"></div>
           <div style="display:flex;align-items:center;gap:10px">
@@ -143,7 +143,7 @@
 ASCII video saved as ascii_demo.mp4</pre>
 
           <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
-            <button class="btn" onclick="replayTerm()">Made With Python (a bit slow)</button>
+            <button class="btn" onclick="replayTerm()">Made With Python/C++</button>
           </div>
         </div>
 
@@ -162,7 +162,7 @@ ASCII video saved as ascii_demo.mp4</pre>
 
     // Terminal replay animation
     const rawLines = [
-      '$ python gav.py -videopath demo.mp4 -width 140 -fps 24',
+      'gav -videopath demo.mp4 -width 140 -fps 24',
       '[Frame Extraction] Saved frame 0000',
       '[Frame Extraction] Saved frame 0001',
       '[ASCII Conversion] Converted frame_0000.png',
